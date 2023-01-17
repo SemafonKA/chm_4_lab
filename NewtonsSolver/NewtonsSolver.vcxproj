@@ -127,12 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="LU solver\resources\Matrices.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LLT solver\matrixIO.h" />
-    <ClInclude Include="LLT solver\predefined_types.h" />
-    <ClInclude Include="LLT solver\profile_matrix_operations.h" />
+    <ClInclude Include="LU solver\headers\Matrices.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

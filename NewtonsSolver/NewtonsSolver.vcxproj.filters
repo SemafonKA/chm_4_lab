@@ -13,24 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Файлы заголовков\LLT">
-      <UniqueIdentifier>{bd73b9ec-fa7a-46c5-93f9-a91d7ee6726f}</UniqueIdentifier>
+    <Filter Include="Файлы заголовков\LU sovler">
+      <UniqueIdentifier>{95576093-dae9-48a1-aba0-4125c7ad2c3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\LU solver">
+      <UniqueIdentifier>{91326a3a-e7e6-401f-bc23-6be9ec0df2d5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="LU solver\resources\Matrices.cpp">
+      <Filter>Файлы ресурсов\LU solver</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LLT solver\matrixIO.h">
-      <Filter>Файлы заголовков\LLT</Filter>
-    </ClInclude>
-    <ClInclude Include="LLT solver\predefined_types.h">
-      <Filter>Файлы заголовков\LLT</Filter>
-    </ClInclude>
-    <ClInclude Include="LLT solver\profile_matrix_operations.h">
-      <Filter>Файлы заголовков\LLT</Filter>
+    <ClInclude Include="LU solver\headers\Matrices.h">
+      <Filter>Файлы заголовков\LU sovler</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
