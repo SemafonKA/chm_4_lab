@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -118,6 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,11 +129,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="LU solver\resources\Matrices.cpp" />
+    <ClCompile Include="LU solver\resources\ProfileLU.cpp" />
+    <ClCompile Include="LU solver\resources\Matrix.cpp" />
+    <ClCompile Include="LU solver\resources\ProfileMatrix.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NewtonsSolver.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LU solver\headers\Matrices.h" />
+    <ClInclude Include="json.hpp" />
+    <ClInclude Include="LU solver\headers\ProfileLU.h" />
+    <ClInclude Include="LU solver\headers\Matrix.h" />
+    <ClInclude Include="LU solver\headers\ProfileMatrix.h" />
+    <ClInclude Include="NewtonsSolver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

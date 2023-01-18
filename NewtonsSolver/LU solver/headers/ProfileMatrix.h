@@ -6,7 +6,7 @@
 class ProfileMatrix {
 public:
 
-   static enum class ProfileMatrixType
+   enum class ProfileMatrixType
    {
       Empty,
       ProfileOnly,

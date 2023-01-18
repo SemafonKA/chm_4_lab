@@ -1,6 +1,6 @@
 #include "../headers/ProfileMatrix.h"
 
-inline void ProfileMatrix::MakeFromMatrix(const Matrix& mat) {
+void ProfileMatrix::MakeFromMatrix(const Matrix& mat) {
    if (mat.Cols() != mat.Rows())
       throw std::runtime_error("Bad matrix sizes (matrix should be squared)");
 
@@ -40,8 +40,8 @@ inline void ProfileMatrix::MakeFromMatrix(const Matrix& mat) {
          }
          if (flag)
          {
-            au[s] = mat(i, j);
-            al[s] = mat(j, i);
+            al[s] = mat(i, j);
+            au[s] = mat(j, i);
             s++;
          }
       }
@@ -51,7 +51,7 @@ inline void ProfileMatrix::MakeFromMatrix(const Matrix& mat) {
    type = ProfileMatrixType::ProfileOnly;
 }
 
-inline void ProfileMatrix::LUdecompose() {
+void ProfileMatrix::LUdecompose() {
    for (size_t i = 0; i < Size(); i++)
    {
       size_t i0 = ia[i];

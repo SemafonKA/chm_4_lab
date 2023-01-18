@@ -8,9 +8,9 @@ namespace LU {
 
       ProfileSolver() {}
 
-      static void _Direct(const ProfileMatrix& mat, std::vector<double>& x, const std::vector<double>& F);
+      static void _Direct(const ProfileMatrix& mat, std::vector<double>& x);
 
-      static void _Reverse(const ProfileMatrix& mat, std::vector<double>& x, const std::vector<double>& F);
+      static void _Reverse(const ProfileMatrix& mat, std::vector<double>& x);
 
 
    public:
@@ -19,8 +19,9 @@ namespace LU {
          if (!mat.isLU()){
             throw std::runtime_error("Profile matrix is not LU decomposed, that ProfileSolver needs.");
          }
-         _Direct(mat, x, F);
-         _Reverse(mat, x, F);
+         x = F;
+         _Direct(mat, x);
+         _Reverse(mat, x);
       }
    };
 }

@@ -24,13 +24,34 @@
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="LU solver\resources\Matrices.cpp">
+    <ClCompile Include="LU solver\resources\Matrix.cpp">
       <Filter>Файлы ресурсов\LU solver</Filter>
+    </ClCompile>
+    <ClCompile Include="LU solver\resources\ProfileMatrix.cpp">
+      <Filter>Файлы ресурсов\LU solver</Filter>
+    </ClCompile>
+    <ClCompile Include="LU solver\resources\ProfileLU.cpp">
+      <Filter>Файлы ресурсов\LU solver</Filter>
+    </ClCompile>
+    <ClCompile Include="NewtonsSolver.cpp">
+      <Filter>Файлы ресурсов</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LU solver\headers\Matrices.h">
+    <ClInclude Include="LU solver\headers\Matrix.h">
       <Filter>Файлы заголовков\LU sovler</Filter>
+    </ClInclude>
+    <ClInclude Include="LU solver\headers\ProfileMatrix.h">
+      <Filter>Файлы заголовков\LU sovler</Filter>
+    </ClInclude>
+    <ClInclude Include="LU solver\headers\ProfileLU.h">
+      <Filter>Файлы заголовков\LU sovler</Filter>
+    </ClInclude>
+    <ClInclude Include="NewtonsSolver.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="json.hpp">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

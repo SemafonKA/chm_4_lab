@@ -11,12 +11,8 @@ public:
 public:
    Matrix() {}
 
-   Matrix(size_t cols, size_t rows) {
-      elems.resize(cols);
-      for (size_t i = 0; i < elems.size(); i++)
-      {
-         elems[i].resize(rows);
-      }
+   Matrix(size_t rows, size_t cols) {
+      resize(rows, cols);
    }
 
    Matrix(std::vector<std::vector<double>>&& initMat) {
@@ -54,6 +50,14 @@ public:
 
    double operator() (std::size_t x, std::size_t y) const {
       return elems[x][y];
+   }
+
+   void resize(std::size_t rows, std::size_t cols) {
+      elems.resize(cols);
+      for (size_t i = 0; i < elems.size(); i++)
+      {
+         elems[i].resize(rows);
+      }
    }
 
 };
