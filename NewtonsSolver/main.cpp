@@ -1,35 +1,39 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <fstream>
 #include <vector>
 #include "NewtonsSolver.h"
+#include "GraphicDrawer.h"
 
 using namespace std;
 using NewtonsSolver = Newtons::NewtonsSolver;
 
 /// <summary>
-/// Получение функций F_i
+/// РџРѕР»СѓС‡РµРЅРёРµ С„СѓРЅРєС†РёР№ F_i
 /// </summary>
-/// <param name="funcNum"> - номер функции для вызова;</param>
-/// <param name="x"> - параметры функции</param>
-/// <returns>Значение функции в точке [x]</returns>
+/// <param name="funcNum"> - РЅРѕРјРµСЂ С„СѓРЅРєС†РёРё РґР»СЏ РІС‹Р·РѕРІР°;</param>
+/// <param name="x"> - РїР°СЂР°РјРµС‚СЂС‹ С„СѓРЅРєС†РёРё</param>
+/// <returns>Р—РЅР°С‡РµРЅРёРµ С„СѓРЅРєС†РёРё РІ С‚РѕС‡РєРµ [x]</returns>
 double F(size_t funcNum, const std::vector<double>& x) {
    switch (funcNum)
    {
-      case 0: return pow((x[0] - 2), 2) + x[1] * x[1] - 4;
-      case 1: return pow((x[0] + 2), 2) + x[1] * x[1] - 4;
+      //case 0: return pow((x[0] - 2), 2) + pow((x[1]), 2) - 4;
+      //case 1: return pow((x[0] + 2), 2) + pow((x[1]), 2) - 4;
+      // 
+      case 0: return sin(x[0])*sin(x[0]) - x[1];
+      case 1: return 2*exp(x[0]) - x[1] - 5;
       //case 2: return x[0] * x[0] + pow((x[1] - 2), 2) - 4;
 
-      default: throw std::runtime_error("Неправильный номер функции F");
+      default: throw std::runtime_error("РќРµРїСЂР°РІРёР»СЊРЅС‹Р№ РЅРѕРјРµСЂ С„СѓРЅРєС†РёРё F");
    }
 }
 
 /// <summary>
-/// Получение производных функций F_i
+/// РџРѕР»СѓС‡РµРЅРёРµ РїСЂРѕРёР·РІРѕРґРЅС‹С… С„СѓРЅРєС†РёР№ F_i
 /// </summary>
-/// <param name="funcNum"> - номер функции для выбора производной;</param>
-/// <param name="varNum"> - номер параметра, по которому берётся производная;</param>
-/// <param name="x"> - параметры функции</param>
-/// <returns>Значение функции в точке [x]</returns>
+/// <param name="funcNum"> - РЅРѕРјРµСЂ С„СѓРЅРєС†РёРё РґР»СЏ РІС‹Р±РѕСЂР° РїСЂРѕРёР·РІРѕРґРЅРѕР№;</param>
+/// <param name="varNum"> - РЅРѕРјРµСЂ РїР°СЂР°РјРµС‚СЂР°, РїРѕ РєРѕС‚РѕСЂРѕРјСѓ Р±РµСЂС‘С‚СЃСЏ РїСЂРѕРёР·РІРѕРґРЅР°СЏ;</param>
+/// <param name="x"> - РїР°СЂР°РјРµС‚СЂС‹ С„СѓРЅРєС†РёРё</param>
+/// <returns>Р—РЅР°С‡РµРЅРёРµ С„СѓРЅРєС†РёРё РІ С‚РѕС‡РєРµ [x]</returns>
 double div_F(size_t funcNum, size_t varNum, const std::vector<double>& x) {
    switch (funcNum)
    {
@@ -38,11 +42,11 @@ double div_F(size_t funcNum, size_t varNum, const std::vector<double>& x) {
          switch (varNum)
          {
             case 0:
-               return 2*x[0] - 4;
+               return 2*sin(x[0])*cos(x[0]);
             case 1:
-               return 2*x[1];
+               return -1;
 
-            default: throw std::runtime_error("Неправильный номер параметра функции");
+            default: throw std::runtime_error("РќРµРїСЂР°РІРёР»СЊРЅС‹Р№ РЅРѕРјРµСЂ РїР°СЂР°РјРµС‚СЂР° С„СѓРЅРєС†РёРё");
          }
       }
 
@@ -52,11 +56,11 @@ double div_F(size_t funcNum, size_t varNum, const std::vector<double>& x) {
          switch (varNum)
          {
             case 0:
-               return 2 * x[0] + 4;
+               return 2*exp(x[0]);
             case 1:
-               return 2 * x[1];
+               return -1;
 
-            default: throw std::runtime_error("Неправильный номер параметра функции");
+            default: throw std::runtime_error("РќРµРїСЂР°РІРёР»СЊРЅС‹Р№ РЅРѕРјРµСЂ РїР°СЂР°РјРµС‚СЂР° С„СѓРЅРєС†РёРё");
          }
       }
 
@@ -69,16 +73,16 @@ double div_F(size_t funcNum, size_t varNum, const std::vector<double>& x) {
       //      case 1:
       //         return 2 * x[1] - 4;
 
-      //      default: throw std::runtime_error("Неправильный номер параметра функции");
+      //      default: throw std::runtime_error("РќРµРїСЂР°РІРёР»СЊРЅС‹Р№ РЅРѕРјРµСЂ РїР°СЂР°РјРµС‚СЂР° С„СѓРЅРєС†РёРё");
       //   }
       //}
 
-      default: throw std::runtime_error("Неправильный номер функции F");
+      default: throw std::runtime_error("РќРµРїСЂР°РІРёР»СЊРЅС‹Р№ РЅРѕРјРµСЂ С„СѓРЅРєС†РёРё F");
    }
 }
 
 double div_F_numeric(size_t funcNum, size_t varNum, const std::vector<double>& vars) {
-   static double step = 1e-6;
+   static double step = 1e-1;
    static vector<double> r;
    static vector<double> l;
    r = vars;
@@ -89,33 +93,78 @@ double div_F_numeric(size_t funcNum, size_t varNum, const std::vector<double>& v
    return (F(funcNum, r) - F(funcNum, l)) / (2.0 * step);
 }
 
+
+
 int main() {
    setlocale(LC_ALL, "ru-RU");
 
    constexpr size_t varCount = 2;
    constexpr size_t funcCount = 2;
 
-   auto solver = NewtonsSolver(varCount, funcCount, F, div_F);
+   auto solver = NewtonsSolver(varCount, funcCount, F, div_F_numeric);
 
    NewtonsSolver::TraceVector traceVector;
    solver.EnableTracing(traceVector);
 
    double eps;
-   vector<double> x = { 25.0, -4.0 };
+   vector<double> x = { 7.0, -1.5 };
 
    int a = solver.Solve(x, eps, true);
 
-   cout << "Полученное решение:";
+   cout << "РџРѕР»СѓС‡РµРЅРЅРѕРµ СЂРµС€РµРЅРёРµ:";
    for (auto& el : x)
    {
       cout << format("{:23.15e}", el);
    }
    cout << "\n\n";
 
-   ofstream outFile;
-   outFile.open("iofiles/jsonTrace.json");
-   if (!outFile.is_open())
-      throw runtime_error("OutFile can't be open!");
-   outFile << traceVector.ToJson().dump(2);
-   outFile.close();
+   // if (true) - СЂРёСЃРѕРІР°С‚СЊ РіСЂР°С„РёРєРё
+   // if (false) - РЅРµ СЂРёСЃРѕРІР°С‚СЊ РіСЂР°С„РёРєРё рџ™ѓ
+   if (true)
+   {
+      constexpr size_t width = 800, height = 600;
+      constexpr float scale = 0.02f;
+      constexpr float nearToFunc = 0.1f;
+
+      sf::Vector2f midPoint{ width / 2.0, height / 2.0 };
+
+      Newtons::GraphicDrawer drawer(width, height, L"Р“СЂР°С„РёРєРё С„СѓРЅРєС†РёР№ Рё РґРІРёР¶РµРЅРёСЏ РјРµС‚РѕРґР°", scale);
+
+      // Р РёСЃСѓРµС‚ С„СѓРЅРєС†РёРё, С‚РµРїР»РѕРІРѕРµ РїРѕР»Рµ РЅРµРІСЏР·РєРё Рё РѕСЃРё РєРѕРѕСЂРґРёРЅР°С‚
+      drawer.DrawAll(18, 15, nearToFunc, funcCount, F);
+
+      // Р РёСЃСѓРµС‚ РґРІРёР¶РµРЅРёРµ С‚РѕС‡РєРё С… РІ РїСЂРѕС†РµСЃСЃРµ СЂРµС€РµРЅРёСЏ РјРµС‚РѕРґР°
+      for (size_t i = 0; i < traceVector.Size(); i++)
+      {
+         auto beginPoint = Newtons::GetCoordinatesIJ(sf::Vector2f(traceVector[i].prevX[0], traceVector[i].prevX[1]), midPoint, scale);
+         auto endPoint = Newtons::GetCoordinatesIJ(sf::Vector2f(traceVector[i].X[0], traceVector[i].X[1]), midPoint, scale);
+
+         sf::Vertex line[] = {
+            sf::Vertex(beginPoint, sf::Color::Blue),
+            sf::Vertex(endPoint, sf::Color::Blue)
+         };
+         drawer.window.draw(line, 2, sf::Lines);
+      }
+
+      // Р РёСЃСѓРµС‚ С‚РѕС‡РєСѓ РЅР°С‡Р°Р»Р° РґРІРёР¶РµРЅРёСЏ РјРµС‚РѕРґР°
+      sf::CircleShape startPoint(4);
+      auto startCirclePosition = Newtons::GetCoordinatesIJ(sf::Vector2f(traceVector[0].prevX[0], traceVector[0].prevX[1]), midPoint, scale);
+      startCirclePosition.x -= 4;
+      startCirclePosition.y -= 4;
+      startPoint.setPosition(startCirclePosition);
+      startPoint.setFillColor(sf::Color::Blue);
+      drawer.window.draw(startPoint);
+
+      // Р РёСЃСѓРµС‚ С‚РѕС‡РєСѓ РєРѕРЅС†Р° РґРІРёР¶РµРЅРёСЏ РјРµС‚РѕРґР°
+      sf::CircleShape endPoint(4);
+      auto endCirclePosition = Newtons::GetCoordinatesIJ(sf::Vector2f(traceVector[traceVector.Size()-1].X[0], traceVector[traceVector.Size() - 1].X[1]), midPoint, scale);
+      endCirclePosition.x -= 4;
+      endCirclePosition.y -= 4;
+      endPoint.setPosition(endCirclePosition);
+      endPoint.setFillColor(sf::Color::Blue);
+      drawer.window.draw(endPoint);
+
+      drawer.window.display();
+      drawer.AwaitCloseSync();
+   }
 }

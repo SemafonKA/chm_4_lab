@@ -50,7 +50,7 @@
     <ClInclude Include="NewtonsSolver.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="json.hpp">
+    <ClInclude Include="GraphicDrawer.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

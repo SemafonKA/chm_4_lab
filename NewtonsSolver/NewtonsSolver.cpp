@@ -210,12 +210,14 @@ namespace Newtons {
             Vec::AddVec(_x, coef, _dx, init_x);
             newEps = _GetNormF(init_x);
          }
-         if (coef < criticalCoef)
+
+         if (coef <= criticalCoef)
          {
             init_x = _x;
             if (debugOutput)
             {
-               std::cout << "Выход по ошибке сходимости\n\n";
+               std::cout << "Выход по ошибке сходимости\n";
+               std::cout << std::format("\tКоэф. \\beta:{:15.5f}\n\n", coef);
             }
             return -1;     // Ошибка - вылет по сходимости метода
          }
@@ -248,6 +250,7 @@ namespace Newtons {
             {
                std::cout << std::format("{0:15.5f}", _dx[i] * coef);
             }
+            std::cout << std::format("\n\tКоэф. \\beta:{:15.5f}", coef);
             std::cout << "\n\n";
          }
       }

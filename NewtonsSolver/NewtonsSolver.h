@@ -1,13 +1,10 @@
 #pragma once
 #include "LU solver/headers/ProfileLU.h"
-#include "json.hpp"
 #include <cmath>
 #include <functional>
 #include <algorithm>
 #include <iostream>
 #include <format>
-
-using json = nlohmann::json;
 
 namespace Newtons {
 
@@ -84,22 +81,12 @@ namespace Newtons {
             _traceVec.clear();
          }
 
-         json ToJson() {
-            json js;
-            std::vector<json> semi_jsons;
-            semi_jsons.resize(_traceVec.size());
-            for (size_t i = 0; i < _traceVec.size(); i++)
-            {
-               semi_jsons[i]["iterNum"] = _traceVec[i].iterationNum;
-               semi_jsons[i]["prevX"] = _traceVec[i].prevX;
-               semi_jsons[i]["X"] = _traceVec[i].X;
-               semi_jsons[i]["dX"] = _traceVec[i].dX;
-               semi_jsons[i]["eps"] = _traceVec[i].eps;
-               semi_jsons[i]["prevEps"] = _traceVec[i].prevEps;
-            }
-            js = semi_jsons;
+         size_t Size() const {
+            return _traceVec.size();
+         }
 
-            return js;
+         void Resize(size_t newSize) {
+            return _traceVec.resize(newSize);
          }
       };
 
@@ -212,7 +199,7 @@ namespace Newtons {
 
       // Критический коэффициент, после которого метод завершается с ошибкой сходимости
       // По умолчанию равен числу, соответствующему 6 дроблениям коэффициента на 2
-      double criticalCoef = 1 / (1 << 6);
+      double criticalCoef = 1.0 / (1 << 6);
 
       // Метод для решения системы нелинейных уравнений
       // - init_x - начальное приближение, в том числе итоговое решение
