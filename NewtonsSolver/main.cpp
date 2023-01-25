@@ -16,12 +16,17 @@ using NewtonsSolver = Newtons::NewtonsSolver;
 double F(size_t funcNum, const std::vector<double>& x) {
    switch (funcNum)
    {
-      //case 0: return pow((x[0] - 2), 2) + pow((x[1]), 2) - 4;
-      //case 1: return pow((x[0] + 2), 2) + pow((x[1]), 2) - 4;
+      case 0: return pow(x[0] - 2, 2) + pow(x[1], 2) - 4;
+      case 1: return pow(x[0] + 2, 2) + pow(x[1], 2) - 4;
+      //case 2: return x[0];
       // 
-      case 0: return sin(x[0])*sin(x[0]) - x[1];
-      case 1: return 2*exp(x[0]) - x[1] - 5;
+      //case 0: return sin(x[0])*sin(x[0]) - x[1];
+      //case 1: return 2*exp(x[0]) - x[1] - 5;
       //case 2: return x[0] * x[0] + pow((x[1] - 2), 2) - 4;
+
+      //case 0: return x[1] + x[0] - 4;
+      //case 1: return x[1] - 2 * x[0];
+      //case 2: return x[1] - x[0] + 4;
 
       default: throw std::runtime_error("Неправильный номер функции F");
    }
@@ -82,7 +87,7 @@ double div_F(size_t funcNum, size_t varNum, const std::vector<double>& x) {
 }
 
 double div_F_numeric(size_t funcNum, size_t varNum, const std::vector<double>& vars) {
-   static double step = 1e-1;
+   static double step = 1e-7;
    static vector<double> r;
    static vector<double> l;
    r = vars;
@@ -107,7 +112,7 @@ int main() {
    solver.EnableTracing(traceVector);
 
    double eps;
-   vector<double> x = { 7.0, -1.5 };
+   vector<double> x = { 4.0, 1.0 };
 
    int a = solver.Solve(x, eps, true);
 
@@ -118,12 +123,11 @@ int main() {
    }
    cout << "\n\n";
 
-   // if (true) - рисовать графики
-   // if (false) - не рисовать графики 🙃
-   if (true)
+
+   if (varCount == 2)
    {
       constexpr size_t width = 800, height = 600;
-      constexpr float scale = 0.02f;
+      constexpr float scale = 0.035f;
       constexpr float nearToFunc = 0.1f;
 
       sf::Vector2f midPoint{ width / 2.0, height / 2.0 };

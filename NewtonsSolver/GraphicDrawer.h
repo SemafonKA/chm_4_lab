@@ -72,7 +72,7 @@ namespace Newtons {
       RenderWindow window;
 
       void DrawCoodrLines(size_t xDivisorsCount, size_t yDivisorsCount) {
-         // Отрисовка главных осей
+         // РћС‚СЂРёСЃРѕРІРєР° РіР»Р°РІРЅС‹С… РѕСЃРµР№
          Vertex xLine[] = {
             Vertex(Vector2f(_midPoint.x, 0.f), Color::Black),
             Vertex(Vector2f(_midPoint.x, window.getSize().y * 1.f), Color::Black)
@@ -85,7 +85,7 @@ namespace Newtons {
          window.draw(xLine, 2, sf::Lines);
          window.draw(yLine, 2, sf::Lines);
 
-         // крупные разделители, каждые 2 значения X и Y
+         // РєСЂСѓРїРЅС‹Рµ СЂР°Р·РґРµР»РёС‚РµР»Рё, РєР°Р¶РґС‹Рµ 2 Р·РЅР°С‡РµРЅРёСЏ X Рё Y
          if (xDivisorsCount % 2 == 0) xDivisorsCount++;
          if (yDivisorsCount % 2 == 0) yDivisorsCount++;
 
@@ -102,11 +102,6 @@ namespace Newtons {
          int xStep = (_width / xDivisorsCount);
          for (int i = -(static_cast<int>(xDivisorsCount) / 2); i <= static_cast<int>(xDivisorsCount) / 2; i++)
          {
-            Text text;
-            text.setFont(font);
-            text.setFillColor(Color::Black);
-            text.setCharacterSize(15);
-
             Vertex line[] = {
                Vertex(Vector2f(_midPoint.x + i * xStep, _midPoint.y - 6), Color::Black),
                Vertex(Vector2f(_midPoint.x + i * xStep, _midPoint.y + 6), Color::Black)
